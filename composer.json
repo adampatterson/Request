@@ -1,0 +1,34 @@
+{
+  "name": "adampatterson/numeral",
+  "description": "",
+  "keywords": [
+    "request",
+    "symfony"
+  ],
+  "license": "MIT",
+  "type": "library",
+  "authors": [
+    {
+      "name": "Adam Patterson",
+      "email": "hello@adampatterson.ca"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/adampatterson/Request/issues",
+    "source": "https://github.com/adampatterson/Request"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^9.5"
+  },
+  "require": {
+    "symfony/http-foundation": "5.x-dev"
+  },
+  "autoload": {
+    "psr-4": {
+      "Request\\": "src/"
+    }
+  },
+  "scripts": {
+    "test": "phpunit"
+  }
+}
