@@ -15,3 +15,8 @@ $ which phpunit
 ```
 
 `composer run-script test`
+
+
+## Local Dev
+
+`ln -s ~/Sites/personal/_packages/Request/ ~/Sites/personal/_WordPressPlugins/algolia-acf/vendor/adampatterson/request`
