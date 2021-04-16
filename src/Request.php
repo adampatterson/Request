@@ -2,6 +2,9 @@
 
 namespace Request;
 
+use Illuminate\Support\Arr;
+use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
+
 /**
  * Class Request
  * @package Request
@@ -24,8 +27,12 @@ class Request
 class MakeRequest
 {
 
-    static $request;
-
+    protected $request;
+    protected $pathInfo;
+    protected $requestUri;
+    protected $baseUrl;
+    protected $basePath;
+    protected $method;
 
     /**
      * @param  mixed  ...$args
@@ -34,10 +41,51 @@ class MakeRequest
      */
     static function new(...$args)
     {
-        self::$request = \Symfony\Component\HttpFoundation\Request::createFromGlobals();
-
         return new self(...$args);
     }
+
+    public function __construct()
+    {
+        $this->request = \Symfony\Component\HttpFoundation\Request::createFromGlobals();
+
+        $this->pathInfo   = null;
+        $this->requestUri = null;
+        $this->baseUrl    = null;
+        $this->basePath   = null;
+        $this->method     = null;
+    }
+
+    public function instance()
+    {
+        return $this;
+    }
+
+    public function method()
+    {
+        return $this->request->getMethod();
+    }
+
+    public function root()
+    {
+        return rtrim($this->request->getSchemeAndHttpHost().$this->request->getBaseUrl(), '/');
+    }
+
+    public function uri()
+    {
+        return $this->request->getUri();
+    }
+
+    public function ip()
+    {
+        return $this->request->getClientIp();
+    }
+
+    public function userAgent()
+    {
+        return $this->request->headers->get('User-Agent');
+    }
+
+
 
     /**
      * If access to the full Symfony component is needed then use
@@ -50,6 +98,6 @@ class MakeRequest
      */
     public function get(string $key, $default = null)
     {
-        return self::$request->get($key, $default);
+        return $this->request->get($key, $default);
     }
 }
