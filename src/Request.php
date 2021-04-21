@@ -85,8 +85,6 @@ class MakeRequest
         return $this->request->headers->get('User-Agent');
     }
 
-
-
     /**
      * If access to the full Symfony component is needed then use
      * $this->request->get
@@ -99,5 +97,10 @@ class MakeRequest
     public function get(string $key, $default = null)
     {
         return $this->request->get($key, $default);
+    }
+
+    public function all()
+    {
+        return $this->request->query->all();
     }
 }
