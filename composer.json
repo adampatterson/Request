@@ -1,6 +1,6 @@
 {
   "name": "adampatterson/request",
-  "description": "",
+  "description": "Simple request wrapper around the Symfony HTTP Foundation",
   "keywords": [
     "request",
     "symfony"
