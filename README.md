@@ -19,4 +19,4 @@ $ which phpunit
 
 ## Local Dev
 
-`ln -s ~/Sites/personal/_packages/Request/ ~/Sites/personal/_WordPressPlugins/algolia-acf/vendor/adampatterson/request`
+`ln -s ~/Sites/personal/_packages/Request/ ~/Sites/personal/projectName/vendor/adampatterson/request`
