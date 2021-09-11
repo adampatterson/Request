@@ -21,7 +21,7 @@
     "phpunit/phpunit": "^9.5"
   },
   "require": {
-    "symfony/http-foundation": "5.x-dev"
+    "symfony/http-foundation": "^5.3"
   },
   "autoload": {
     "psr-4": {
