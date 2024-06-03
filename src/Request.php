@@ -1,8 +1,7 @@
 <?php
 
-namespace Request;
+namespace PaperLeaf\Core;
 
-use Illuminate\Support\Arr;
 use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
 
 /**
@@ -13,14 +12,9 @@ use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
  */
 class Request
 {
-
-    /**
-     * Request constructor.
-     */
     public static function __callStatic($method, $args)
     {
         return MakeRequest::new()->{$method}(...$args);
-
     }
 }
 
@@ -28,17 +22,7 @@ class MakeRequest
 {
 
     protected $request;
-    protected $pathInfo;
-    protected $requestUri;
-    protected $baseUrl;
-    protected $basePath;
-    protected $method;
 
-    /**
-     * @param  mixed  ...$args
-     *
-     * @return HttpRequest
-     */
     static function new(...$args)
     {
         return new self(...$args);
@@ -47,59 +31,49 @@ class MakeRequest
     public function __construct()
     {
         $this->request = \Symfony\Component\HttpFoundation\Request::createFromGlobals();
-
-        $this->pathInfo   = null;
-        $this->requestUri = null;
-        $this->baseUrl    = null;
-        $this->basePath   = null;
-        $this->method     = null;
     }
 
-    public function instance()
+    public function instance(): SymfonyRequest
     {
-        return $this;
+        return $this->request;
     }
 
-    public function method()
+    public function method(): string
     {
         return $this->request->getMethod();
     }
 
-    public function root()
+    public function root(): string
     {
         return rtrim($this->request->getSchemeAndHttpHost().$this->request->getBaseUrl(), '/');
     }
 
-    public function uri()
+    public function uri(): string
     {
         return $this->request->getUri();
     }
 
-    public function ip()
+    public function ip(): ?string
     {
         return $this->request->getClientIp();
     }
 
-    public function userAgent()
+    public function userAgent(): ?string
     {
         return $this->request->headers->get('User-Agent');
     }
 
-    /**
-     * If access to the full Symfony component is needed then use
-     * $this->request->get
-     *
-     * @param  string  $key
-     * @param  null  $default
-     *
-     * @return mixed
-     */
-    public function get(string $key, $default = null)
+    public function get(string $key, $default = null): mixed
     {
         return $this->request->get($key, $default);
     }
 
-    public function all()
+    public function has(string $key): bool
+    {
+        return $this->request->query->has($key);
+    }
+
+    public function all(): array
     {
         return $this->request->query->all();
     }
