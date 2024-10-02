@@ -5,7 +5,9 @@ This script is still under development.
 
 ## View on [Packagist](https://packagist.org/packages/adampatterson/request)
 
-`composer require adampatterson/request`
+```shell
+composer require adampatterson/request
+```
 
 ## Tests
 
@@ -16,7 +18,9 @@ $ which phpunit
 ~/.composer/vendor/bin/phpunit
 ```
 
-`composer run-script test`
+```shell
+composer run-script test
+```
 
 
 ## Local Dev
