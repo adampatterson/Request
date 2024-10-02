@@ -1,6 +1,6 @@
 <?php
 
-namespace PaperLeaf\Core;
+namespace Request;
 
 use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
 
@@ -73,8 +73,12 @@ class MakeRequest
         return $this->request->query->has($key);
     }
 
-    public function all(): array
+    public function all($method = 'GET'): array
     {
-        return $this->request->query->all();
+        return match ($method) {
+            'get', 'GET'       => $this->request->query->all(),
+            'post', 'POST'     => $this->request->request->all(),
+            'cookie', 'COOKIE' => $this->request->cookies->all(),
+        };
     }
 }
