@@ -3,7 +3,9 @@
 
 This script is still under development.
 
-## Install from [Packagist](https://packagist.org/packages/adampatterson/request)
+## View on [Packagist](https://packagist.org/packages/adampatterson/request)
+
+`composer require adampatterson/request`
 
 ## Tests
 
